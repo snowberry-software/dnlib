@@ -6,16 +6,16 @@ namespace dnlib.DotNet {
 	/// <summary>
 	/// Various helper methods for <see cref="IType"/> classes to prevent infinite recursion
 	/// </summary>
-	struct TypeHelper {
+	public struct TypeHelper {
 		RecursionCounter recursionCounter;
 
-		internal static bool ContainsGenericParameter(StandAloneSig ss) => ss is not null && TypeHelper.ContainsGenericParameter(ss.Signature);
-		internal static bool ContainsGenericParameter(InterfaceImpl ii) => ii is not null && TypeHelper.ContainsGenericParameter(ii.Interface);
-		internal static bool ContainsGenericParameter(GenericParamConstraint gpc) => gpc is not null && ContainsGenericParameter(gpc.Constraint);
+		public static bool ContainsGenericParameter(StandAloneSig ss) => ss is not null && TypeHelper.ContainsGenericParameter(ss.Signature);
+		public static bool ContainsGenericParameter(InterfaceImpl ii) => ii is not null && TypeHelper.ContainsGenericParameter(ii.Interface);
+		public static bool ContainsGenericParameter(GenericParamConstraint gpc) => gpc is not null && ContainsGenericParameter(gpc.Constraint);
 
-		internal static bool ContainsGenericParameter(MethodSpec ms) => ms is not null && ContainsGenericParameter(ms.GenericInstMethodSig);
+		public static bool ContainsGenericParameter(MethodSpec ms) => ms is not null && ContainsGenericParameter(ms.GenericInstMethodSig);
 
-		internal static bool ContainsGenericParameter(MemberRef mr) {
+		public static bool ContainsGenericParameter(MemberRef mr) {
 			if (mr is null)
 				return false;
 
